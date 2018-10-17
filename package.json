@@ -1,0 +1,22 @@
+{
+  "name": "yjs-prototype",
+  "version": "0.0.1",
+  "description": "yjs prototype",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -c-1 -p 12345 public",
+    "compile": "browserify src/app.js -o public/js/app.js -d"
+  },
+  "author": "thecatstones",
+  "license": "MIT",
+  "dependencies": {
+    "browserify": "^16.2.3",
+    "http-server": "^0.11.1",
+    "ipfs": "^0.32.3",
+    "y-array": "^10.1.4",
+    "y-ipfs-connector": "^2.3.0",
+    "y-memory": "^8.0.9",
+    "y-text": "^9.5.1",
+    "yjs": "^12.3.3"
+  }
+}
