@@ -1,44 +1,25 @@
-const repo = () => `ipfs/yjs-demo/${Math.random()}`
-
-const IPFS = require('ipfs')
-
-const ipfs = new IPFS({
-  repo: repo(),
-  EXPERIMENTAL: {
-    pubsub: true,
-  },
-  config: {      // overload the default config
-    Addresses: {
-      Swarm: [
-        '/dns4/ws-star.discovery.libp2p.io/tcp/443/wss/p2p-websocket-star/',
-      ],
-    },
-  },
-})
-
-ipfs.once('ready', () => ipfs.id((err, info) => {
-  if (err) throw err
-  console.log(`IPFS node ready with address ${info.id}`)
-}))
-
 const Y = require('yjs')
-require('y-memory')(Y)
-require('y-ipfs-connector')(Y)
+require('y-memory')(Y)  // extend Y with the memory module
+require('y-websockets-client')(Y)
 require('y-array')(Y)
 require('y-text')(Y)
 
 Y({
   db: {
-    name: 'memory',
+    name: 'memory',                // store the shared data in memory
   },
   connector: {
-    name: 'ipfs',
-    room: 'Textarea-example-dev',
-    ipfs,
+    name: 'websockets-client',     // use the websockets connector
+    room: 'my room',               // instances connected to the same room share data
+    // url: 'localhost:1234',      // specify your own server destination
   },
-  share: {
-    textarea: 'Text',
+  share: {                         // specify the shared content
+    array: 'Array',                // y.share.array is of type Y.Array
+    text:  'Text',                 // y.share.text is of type Y.Text
   },
-}).then((y) => {
-  y.share.textarea.bind(document.getElementById('textfield'))
+}).then((y) => {                   // Yjs is successfully initialized
+  window.y = y
+  console.log('Yjs instance ready!')
+  y.share.array                    // is a Y.Array instance
+  y.share.text                     // is a Y.Text instance
 })
