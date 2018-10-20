@@ -26,5 +26,15 @@ Y({
   y.share.array                    // is a Y.Array instance
   y.share.text                     // is a Y.Text instance
   y.share.map                      // is a Y.Map instance
-  y.share.text.bind(document.getElementById('textfield'))
+
+  const code = document.getElementById('textfield')
+  const editor = CodeMirror.fromTextArea(code, {
+    mode:        'javascript',
+    theme:       'seti',
+    lineNumbers: true,
+    tabSize:     2,
+  })
+  window.X = { code, editor }
+
+  y.share.text.bindCodeMirror(editor)
 })
