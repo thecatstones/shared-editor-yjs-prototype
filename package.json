@@ -2,9 +2,12 @@
   "name": "yjs-prototype",
   "version": "0.0.1",
   "description": "yjs prototype",
-  "main": "index.js",
+  "engines": {
+    "node": "10.12.0"
+  },
+  "main": "server.js",
   "scripts": {
-    "start": "http-server -c-1 -p 12345 public",
+    "start": "node server.js",
     "compile": "browserify src/app.js -o public/js/app.js -d",
     "watchify": "watchify src/app.js -d -o public/js/app.js -v"
   },
@@ -12,7 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "browserify": "^16.2.3",
-    "http-server": "^0.11.1",
+    "express": "^4.16.4",
     "watchify": "^3.11.0",
     "y-array": "^10.1.4",
     "y-map": "^10.1.3",

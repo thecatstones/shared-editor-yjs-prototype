@@ -34,7 +34,7 @@ Y({
     lineNumbers: true,
     tabSize:     2,
   })
-  window.X = { code, editor }
+  window.X = { code, editor }  // for debugging
 
   y.share.text.bindCodeMirror(editor)
 })
