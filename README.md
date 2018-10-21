@@ -1,7 +1,8 @@
 # Shared Editor Prototype
 Built with Yjs, CodeMirror, and WebSocket.
+Try it out here: https://catstones-editor.herokuapp.com/
 
-## Instructions
+## Instructions to Run Locally
 1. Clone repo
 2. `npm install`
 3. `npm run compile`
