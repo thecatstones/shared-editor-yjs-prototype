@@ -11,7 +11,10 @@ Y({
   connector: {
     name: 'websockets-client',     // use the websockets connector
     room: 'my room',               // instances connected to the same room share data
-    url: 'https://catstones-websocket-server.herokuapp.com/',      // specify your own server destination
+
+    // TODO: stop Chrome from blocking connection to heroku server when running locally
+    // comment out url to use Yjs-provided WebSocket server
+    // url: 'https://catstones-websocket-server.herokuapp.com/',
   },
   share: {                         // specify the shared content
     array: 'Array',                // y.share.array is of type Y.Array
@@ -32,4 +35,33 @@ Y({
   })
 
   y.share.text.bindCodeMirror(editor)
+})
+
+// REPL
+// const Terminal  = require('xterm').Terminal
+// window.Terminal = Terminal
+// const term      = new Terminal()
+// window.term     = term
+// term.open(document.getElementById('terminal'))
+// term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ')
+
+
+const consoleElm  = document.querySelector('#console')
+const clearButton = document.querySelector('#clear')
+
+clearButton.addEventListener('click', (event) => {
+	consoleElm.innerHTML = ''
+})
+
+const consoleForm = document.querySelector('#console-form')
+consoleForm.addEventListener('submit', (event) => {
+	event.preventDefault()
+  let command = event.target.querySelector('#command').value
+  consoleElm.innerHTML += `>> ${command}\n`
+  let value   = eval(command)
+  // let output  = (value === undefined ? 'undefined' : value) + '\n'
+  let output  = `${JSON.stringify(value)}\n`
+  consoleElm.innerHTML += output
+  consoleForm.reset()
+  // term.write(output)
 })

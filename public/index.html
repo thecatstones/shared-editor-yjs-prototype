@@ -5,12 +5,25 @@
   <title>Shared Editor Prototype</title>
   <link rel='stylesheet' href='plugin/codemirror/lib/codemirror.css'>
   <link rel='stylesheet' href='plugin/codemirror/theme/seti.css'>
+  <!-- <link rel='stylesheet' href='css/xterm.css'> -->
   <style>
-    body { background: #000; color: #eee; }
+    body   { background: #000; color: #eee; }
+    input  { background: #151515; color: #eee; border: #33b5e5; }
+    button { background: #33b5e5; color: #000; border: none; }
+    pre { border-top: solid 1px #33b5e5; }
   </style>
 </head>
 <body>
   <textarea id='textfield'></textarea>
+  <!-- <div id='terminal'></div> -->
+  <div>
+    <form id='console-form'>
+      <input type='text' id='command'>
+      <button type='submit'>Run Command</button>
+      <button id='clear' type='button'>Clear</button>
+    </form>
+    <pre id='console'></pre>
+  </div>
   <script src='js/jquery.js'></script>
   <script src='plugin/codemirror/lib/codemirror.js'></script>
   <script src='plugin/codemirror/mode/javascript/javascript.js'></script>
