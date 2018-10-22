@@ -4,6 +4,8 @@ require('y-websockets-client')(Y)
 require('y-array')(Y)
 require('y-text')(Y)
 
+let url = window.location.href.includes('heroku') ? 'https://catstones-websocket-server.herokuapp.com/' : undefined
+
 Y({
   db: {
     name: 'memory',                // store the shared data in memory
@@ -14,7 +16,7 @@ Y({
 
     // TODO: stop Chrome from blocking connection to heroku server when running locally
     // comment out url to use Yjs-provided WebSocket server
-    // url: 'https://catstones-websocket-server.herokuapp.com/',
+    url,
   },
   share: {                         // specify the shared content
     array: 'Array',                // y.share.array is of type Y.Array
