@@ -47,6 +47,9 @@ Y({
   clearButton.addEventListener('click', (event) => {
     // consoleElm.innerHTML = ''
     y.share.array.delete(0, y.share.array.length)
+
+    consoleForm.reset()
+    y.share.text2.delete(0, y.share.text2.length)
   })
 
   const consoleForm = document.querySelector('#console-form')
@@ -61,7 +64,7 @@ Y({
     // consoleElm.innerHTML += output
     y.share.array.push([output])
     
-    // consoleForm.reset()
+    consoleForm.reset()
     y.share.text2.delete(0, y.share.text2.length)
     // term.write(output)
   })
